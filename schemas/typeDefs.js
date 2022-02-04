@@ -1,26 +1,43 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-    #Pretty Cool COmments!
-    type Cars {
-        id: ID
-        make: String
-        model: String
-        sold: Boolean
-    }
+  type School {
+    _id: ID
+    name: String
+    location: String
+    studentCount: Int
+    classes: [Class]
+  }
 
-    #Query
-    type Query {
-        allCars: [Cars],
-        getCarById(id:ID!): Cars
-        getSoldCars(sold:Boolean!): [Cars]
-    }
+  type Class {
+    _id: ID
+    name: String
+    building: String
+    creditHours: Int
+    professor: Professor
+  }
 
-    #Mutation
-    type Mutation {
-        addCar(id: Int!, make: String!, model: String!, price: Int!, image: String!, sold: Boolean! ): Cars
-    }
+  type Professor {
+    _id: ID
+    name: String
+    officeHours: String
+    officeLocation: String
+    studentScore: Float
+    classes: [Class]
+  }
+
+  type Query {
+    schools: [School]
+    classes: [Class]
+    professors: [Professor]
+    class(id: ID!): Class
+  }
+
+  type Mutation {
+    addSchool(name: String!, location: String!, studentCount: Int!): School
+    updateClass(id: ID!, building: String!): Class
+    deleteClass(id: ID!) : Class
+  }
 `;
 
 module.exports = typeDefs;
-

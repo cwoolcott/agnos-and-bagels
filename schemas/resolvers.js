@@ -1,25 +1,39 @@
-const { carsForSale } = require('../data/cars.js');
+const { School, Class, Professor } = require('../models');
 
 const resolvers = {
-    Query: {
-        allCars: () => {
-            return carsForSale;
-        },
-        getCarById: (parent, args) => {
-            const car = carsForSale.find(({ id }) => id == args.id);
-            return car;
-        },
-        getSoldCars: (parent, args) => {
-            const cars = carsForSale.filter(({ sold }) => sold == args.sold)
-        }
+  Query: {
+    schools: async () => {
+      return await School.find({}).populate('classes').populate({
+        path: 'classes',
+        populate: 'professor'
+      });
     },
-    Mutation: {
-        addCar: (parent, args) => {
-            const newCar = args;
-            carsForSale.push(newCar);
-            return newCar;
-        }
+    classes: async () => {
+      return await Class.find({}).populate('professor');
+    },
+    class: async (parent, args) => {
+      return await Class.findById(args.id);
+    },
+    professors: async () => {
+      return await Professor.find({}).populate('classes');
     }
+  },
+  Mutation: {
+    addSchool: async (parent, { name, location, studentCount }) => {
+      return await School.create({ name, location, studentCount });
+    },
+    updateClass: async (parent, { id, building }) => {
+      return await Class.findOneAndUpdate(
+        { _id: id },
+        { building },
+        { new: true });
+    },
+    deleteClass: async (parent, { id }) => {
+      return await Class.remove(
+        { _id: id }
+      )
+    }
+  }
 }
 
 module.exports = resolvers;
