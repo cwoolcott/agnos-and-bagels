@@ -1,0 +1,17 @@
+[
+  {
+    "type": "food",
+    "description": "Food/Drink",
+    "taxRate": 0.07
+  },
+  {
+    "type": "clothes",
+    "description": "Clothng/Apparal ",
+    "taxRate": 0
+  },
+  {
+    "type": "accessory",
+    "description": "Handbags/Jewelry/Etc",
+    "taxRate": 0.06
+  }
+]

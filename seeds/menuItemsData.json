@@ -1,0 +1,24 @@
+[
+  {
+    "itemNumber": 1001,
+    "name": "Coffee",
+    "description": "Coffee Black. It'll wake you up",
+    "price": 2.0,
+    "taxType": "food",
+    "promotion": "buyonegetone"
+  },
+  {
+    "itemNumber": 1002,
+    "name": "Mocha",
+    "description": "Flavored Mocha Drink",
+    "price": 3.5,
+    "taxType": "food"
+  },
+  {
+    "itemNumber": 1002,
+    "name": "Latte",
+    "description": "Flavored Latte Drink",
+    "price": 4.5,
+    "taxType": "food"
+  }
+]
